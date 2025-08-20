@@ -3,7 +3,8 @@ import { GET_EPISODES } from "@/graphql/queries"
 import { EpisodeProps } from "@/interfaces"
 import EpisodeCard from "@/components/common/EpisodeCard"
 import { useEffect, useState } from "react"
-
+import ErrorProneComponent from "@/components/ErrorProneComponent"
+import ErrorBoundary from "@/components/ErrorBoundary"
 import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/24/solid"
 
 
@@ -27,14 +28,15 @@ const Home: React.FC = () => {
   const info = data?.episodes.info
 
   return (
-    <div className="min-h-screen flex flex-col bg-gradient-to-b from-[#A3D5E0] to-[#F4F4F4] text-gray-800">
-      {/* Header */}
+	<ErrorBoundary>
+    {/* <div className="min-h-screen flex flex-col bg-gradient-to-b from-[#A3D5E0] to-[#F4F4F4] text-gray-800">
+     
       <header className="bg-[#4CA1AF] text-white py-6 text-center shadow-md">
         <h1 className="text-4xl font-bold tracking-wide">Rick and Morty Episodes</h1>
         <p className="mt-2 text-lg italic">Explore the multiverse of adventures!</p>
       </header>
 
-      {/* Main Content */}
+    
       <main className="flex-grow p-6">
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
           {results && results.map(({ id, name, air_date, episode }: EpisodeProps, key: number) => (
@@ -49,9 +51,8 @@ const Home: React.FC = () => {
           ))}
         </div>
 
-       {/* Pagination with icons */}
 <div className="flex items-center justify-center gap-8 mt-6">
-  {/* Previous Button */}
+
   <button
     onClick={() => setPage(prev => (prev > 1 ? prev - 1 : 1))}
     disabled={page === 1}
@@ -60,10 +61,10 @@ const Home: React.FC = () => {
     <ChevronLeftIcon className="w-6 h-6" />
   </button>
 
-  {/* Current Page Display */}
+ 
 
 
-  {/* Next Button */}
+ 
   <button
     onClick={() => setPage(prev => (prev < info.pages ? prev + 1 : prev))}
     disabled={page === info.pages}
@@ -75,11 +76,13 @@ const Home: React.FC = () => {
 
       </main>
 
-      {/* Footer */}
+    
       <footer className="bg-[#4CA1AF] text-white py-4 text-center shadow-md">
         <p>&copy; 2024 Rick and Morty Fan Page</p>
       </footer>
-    </div>
+    </div> */}
+	<ErrorProneComponent />
+	</ErrorBoundary>
   )
 }
 
